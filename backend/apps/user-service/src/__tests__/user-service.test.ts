@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import * as UserService from "../services/user.service";
 import dotenv from "dotenv";
+import { hasUncaughtExceptionCaptureCallback } from "process";
 
 dotenv.config();
 
@@ -120,9 +121,11 @@ describe("User Service Test", () => {
     expect(user.age).toBeUndefined();
   });
 
-  test("delete user", async () => {
+  test("delete user and check if it was deleted in db", async () => {
     const deleted = await UserService.deleteUser(id);
+    const user = await UserService.getUserById(id);
 
     expect(deleted).toBeTruthy();
+    expect(user).toBe(null);
   });
 });
