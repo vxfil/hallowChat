@@ -1,9 +1,5 @@
-import mongoose from "mongoose";
 import * as UserService from "../services/user.service";
-import dotenv from "dotenv";
-import { hasUncaughtExceptionCaptureCallback } from "process";
-
-dotenv.config();
+import mongoose from "mongoose";
 
 const user1 = {
   username: "user1",
@@ -14,15 +10,6 @@ const user1 = {
 let id: string;
 
 describe("User Service Test", () => {
-  beforeAll(async () => {
-    await mongoose.connect(`${process.env.MONGO_URI}`, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
-    });
-  });
-
   test("it should create & save user successfully and give public data back", async () => {
     const savedUser: any = await UserService.createUser(user1);
 

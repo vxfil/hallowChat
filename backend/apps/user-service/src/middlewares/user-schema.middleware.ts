@@ -1,6 +1,6 @@
 import UserModel from "../models/user.model";
-import IUser from "../interfaces/user.interface";
 import * as bcrypt from "bcrypt";
+import IUser from "../interfaces/user.interface";
 
 export default (UserSchema: any) => {
   async function auth(this: IUser, next: any) {
@@ -38,7 +38,6 @@ export default (UserSchema: any) => {
   }, "Password must contain from 6 to 20 symbols");
 
   UserSchema.pre("save", auth);
-  UserSchema.pre("findByIdAndUpdate", auth);
 
   UserSchema.methods.getPublicFields = async function () {
     const userArray = Object.entries(this._doc);
@@ -48,8 +47,13 @@ export default (UserSchema: any) => {
   };
 
   UserSchema.methods.verifyPassword = async function (password: string) {
+    console.log(await bcrypt.compare(password, this.password));
     if (await bcrypt.compare(password, this.password)) {
-      return { _id: this._id, confirmed: this.confirmed };
+      return {
+        _id: this._id,
+        username: this.username,
+        confirmed: this.confirmed,
+      };
     }
     return null;
   };

@@ -1,4 +1,4 @@
-import express from "express";
+import { Request, Response } from "express";
 import * as NATS from "ts-nats";
 import dotenv from "dotenv";
 
@@ -6,7 +6,7 @@ dotenv.config();
 
 const ncUrl = `${process.env.NATS_URI}`;
 
-export const usersList = async (req: express.Request, res: any) => {
+export const usersList = async (req: Request, res: Response) => {
   const nc = await NATS.connect({ url: ncUrl });
   nc.on("error", (err) => console.log(err));
   const message = "get_users";
@@ -19,7 +19,7 @@ export const usersList = async (req: express.Request, res: any) => {
   });
 };
 
-export const getUserById = async (req: express.Request, res: any) => {
+export const getUserById = async (req: Request, res: Response) => {
   const id = req.params.id;
 
   const nc = await NATS.connect(ncUrl);
@@ -33,7 +33,7 @@ export const getUserById = async (req: express.Request, res: any) => {
   });
 };
 
-export const findByUsername = async (req: express.Request, res: any) => {
+export const findByUsername = async (req: Request, res: Response) => {
   const { name } = req.body;
 
   const nc = await NATS.connect(ncUrl);
@@ -47,7 +47,7 @@ export const findByUsername = async (req: express.Request, res: any) => {
   });
 };
 
-export const createUser = async (req: express.Request, res: any) => {
+export const createUser = async (req: Request, res: Response) => {
   const user = req.body;
   const nc = await NATS.connect(ncUrl);
 
@@ -59,7 +59,7 @@ export const createUser = async (req: express.Request, res: any) => {
   });
 };
 
-export const updateUser = async (req: express.Request, res: any) => {
+export const updateUser = async (req: Request, res: Response) => {
   const id = req.params.id;
   const newData = req.body;
   const userData = { newData, id };
@@ -74,7 +74,7 @@ export const updateUser = async (req: express.Request, res: any) => {
   });
 };
 
-export const deleteUser = async (req: express.Request, res: any) => {
+export const deleteUser = async (req: Request, res: Response) => {
   const id = req.params.id;
 
   const nc = await NATS.connect(ncUrl);
