@@ -28,6 +28,7 @@ export const updateUser = async (req: Request, res: Response) => {
   const userData = req.body;
   const userId = req.params.id;
   const result = await UserService.updateUser(userData, userId);
+  console.log(result);
   return res.json(result);
 };
 

@@ -3,13 +3,9 @@
   "version": "1.0.0",
   "description": "> TODO: description",
   "author": "Julia Perlova <dobrpsih@gmail.com>",
-  "homepage": "",
+  "homepage": "https://github.com/vxfil/hallowChat#readme",
   "license": "ISC",
   "main": "dist/app.js",
-  "directories": {
-    "lib": "src",
-    "test": "__tests__"
-  },
   "files": [
     "src"
   ],
@@ -44,5 +40,12 @@
     "ts-nats": "^1.2.15",
     "ts-node": "^9.0.0",
     "validator": "^13.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vxfil/hallowChat.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vxfil/hallowChat/issues"
   }
 }
