@@ -1,0 +1,9 @@
+{
+  "extends": "@hallow-backend/user-service/tsconfig.build.json",
+  "include": ["./**/*.ts"],
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "exclude": ["dist", "src/__tests__", "node_modules"]
+}
