@@ -39,7 +39,7 @@
     "nats": "^1.4.12",
     "ts-nats": "^1.2.15",
     "ts-node": "^9.0.0",
-    "validator": "^13.1.1"
+    "validator": "^13.7.0"
   },
   "repository": {
     "type": "git",
